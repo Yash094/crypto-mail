@@ -70,8 +70,9 @@ export default function Home() {
 
     } catch (error) {
       console.error('Error in handleSubmit:', error);
-      //@ts-ignore 
+
       // to-do fix
+      //@ts-ignore 
       setStatus("Error: " + error.message);
     } finally {
       setIsLoading(false);
