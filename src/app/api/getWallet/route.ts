@@ -37,7 +37,10 @@ export async function POST(request: Request): Promise<Response> {
         return NextResponse.json({ message: "Failed to create wallet" }, { status: 500 });
     } catch (error) {
         console.error("Error in POST handler:", error);
-        return NextResponse.json({ message: "An error occurred", error: error.message }, { status: 500 });
+        return NextResponse.json({
+            message: "An error occurred",
+            error: (error as Error)?.message || 'Unknown error'
+        }, { status: 500 });
     }
 }
 
