@@ -64,7 +64,8 @@ export default function Home() {
         setStatus("Transaction sent successfully!");
       } catch (e) {
         console.error(e)
-        //@ts
+        // to-do fix
+        //@ts-ignore 
         setStatus("Transaction failed: " + e?.message);
       }
 
