@@ -64,12 +64,14 @@ export default function Home() {
         setStatus("Transaction sent successfully!");
       } catch (e) {
         console.error(e)
+        //@ts
         setStatus("Transaction failed: " + e?.message);
       }
 
     } catch (error) {
       console.error('Error in handleSubmit:', error);
-      // @ts-ignore
+      //@ts-ignore 
+      // to-do fix
       setStatus("Error: " + error.message);
     } finally {
       setIsLoading(false);
