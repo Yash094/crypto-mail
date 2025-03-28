@@ -280,24 +280,28 @@ export default function Home() {
                     <div className="text-left mt-4 bg-gray-50 p-4 rounded-lg">
                       <div className="mb-3">
                         <p className="text-sm text-gray-500">Amount Sent</p>
-                        <p className="font-medium">{formData.amount} AVAX</p>
+                        <p className="font-medium text-black">
+                          {formData.amount} AVAX
+                        </p>
                       </div>
                       <div className="mb-3">
                         <p className="text-sm text-gray-500">From Email</p>
-                        <p className="font-medium">
+                        <p className="font-medium text-black">
                           {profiles?.[0]?.details?.email ?? "N/A"}
                         </p>
                       </div>
                       <div className="mb-3">
                         <p className="text-sm text-gray-500">To Email</p>
-                        <p className="font-medium">{formData.email}</p>
+                        <p className="font-medium text-black">
+                          {formData.email}
+                        </p>
                       </div>
                       <div>
                         <p className="text-sm text-gray-500">
                           Transaction Hash
                         </p>
                         <div className="flex items-center mt-1">
-                          <p className="font-mono text-xs truncate">
+                          <p className="font-mono text-xs truncate text-black">
                             {transactionHash}
                           </p>
                           <button

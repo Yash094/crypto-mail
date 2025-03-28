@@ -1,3 +1,15 @@
+## 📸 Demo
+
+Here are some screenshots of the application in action:
+
+<p align="center">
+  <img src="https://i.ibb.co/VcdrwNmB/image.png" alt="Crypto Mail Screenshot 1" width="600">
+</p>
+
+<p align="center">
+  <img src="https://i.ibb.co/ynsXgQQr/image.png" alt="Crypto Mail Screenshot 2" width="600">
+</p>
+
 <p align="center">
   <img src="https://img.shields.io/github/stars/Yash094/crypto-mail.svg?style=for-the-badge">
   <img src="https://img.shields.io/github/issues/Yash094/crypto-mail.svg?style=for-the-badge">
@@ -8,10 +20,6 @@
 
 </strong>
 </p>
- 
- ## ⚠️ Disclaimer
-
-This code is for educational use only. If you are unsure of its suitability for production, please seek expert guidance.
 
 <details open="open">
   <summary>📖 Table of Contents</summary>
@@ -68,10 +76,4 @@ Thank you for considering contributing to this project! To contribute, follow th
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/Yash094/crypto-mail/blob/main/LICENSE) file for details.
-
-## 📞 Contact
-
-For any inquiries or collaboration, you can reach us through:
-
-- Discord: yash094 / yashjoisar
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/Yash094/crypto-mail/blob/main/LICENSE) file for details
