@@ -110,6 +110,7 @@ export default function Home() {
                   client={client}
                   wallets={wallets}
                   chain={avalancheFuji}
+                  theme={'light'}
                 />
               </div>
             </div>
@@ -122,6 +123,7 @@ export default function Home() {
                   client={client}
                   wallets={wallets}
                   chain={avalancheFuji}
+                  theme={'light'}
                 />
               </div>
               <h2 className="text-3xl font-extrabold text-gray-900">

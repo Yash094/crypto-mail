@@ -3,11 +3,11 @@
 Here are some screenshots of the application in action:
 
 <p align="center">
-  <img src="https://i.ibb.co/VcdrwNmB/image.png" alt="Crypto Mail Screenshot 1" width="600">
+  <img src="https://raw.githubusercontent.com/Yash094/crypto-mail/main/public/demo1.png" alt="Crypto Mail Screenshot 1" width="600">
 </p>
 
 <p align="center">
-  <img src="https://i.ibb.co/ynsXgQQr/image.png" alt="Crypto Mail Screenshot 2" width="600">
+  <img src="https://raw.githubusercontent.com/Yash094/crypto-mail/main/public/demo2.png" alt="Crypto Mail Screenshot 2" width="600">
 </p>
 
 <p align="center">
@@ -25,31 +25,32 @@ Here are some screenshots of the application in action:
   <summary>📖 Table of Contents</summary>
   <ol>
     <li>
-      <a href="#📜-about-the-project">About The Project</a>
+      <a href="#about-the-project">📜 About The Project</a>
     </li>
     <li>
-      <a href="#🚀-installation">Installation</a>
+      <a href="#installation">🚀 Installation</a>
     </li>
     <li>
-      <a href="#🛠️-requirements">Requirements</a>
+      <a href="#requirements">🛠️ Requirements</a>
     </li>
     <li>
-      <a href="#🤝-contributing">Contributing</a>
+      <a href="#contributing">🤝 Contributing</a>
     </li>
     <li>
-      <a href="#📄-license">License</a>
+      <a href="#license">📄 License</a>
     </li>
     <li>
-      <a href="#📞-contact">Contact</a>
+      <a href="#help">📞 Help</a>
     </li>
   </ol>
 </details>
 
-## 📜 About The Project
+
+## About The Project
 
 An application to send crypto to email addresss using in-app wallets
 
-## 🚀 Installation
+## Installation
 
 Follow these steps to set up the project:
 
@@ -59,12 +60,12 @@ Follow these steps to set up the project:
 4. npm run dev
 
 
-## 🛠️ Requirements
+## Requirements
 
 - Node.js 18+
 - ThirdWeb API key - clientId and secretKey
 
-## 🤝 Contributing
+## Contributing
 
 Thank you for considering contributing to this project! To contribute, follow these steps:
 
@@ -74,6 +75,10 @@ Thank you for considering contributing to this project! To contribute, follow th
 4. Push your changes to your fork.
 5. Submit a pull request.
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/Yash094/crypto-mail/blob/main/LICENSE) file for details
+
+## Help 
+
+If you need any help with the template, feel free to reach out through [thirdweb support](https://thirdweb.com/support)
