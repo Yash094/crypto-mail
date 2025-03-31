@@ -4,8 +4,9 @@ import { useState } from "react";
 import { ConnectButton, useActiveAccount, useProfiles } from "thirdweb/react";
 import { inAppWallet } from "thirdweb/wallets";
 import { client } from "./client";
-import { avalancheFuji } from "thirdweb/chains";
-import { prepareTransaction, toWei, sendAndConfirmTransaction } from "thirdweb";
+import { base } from "thirdweb/chains";
+import { sendAndConfirmTransaction, getContract } from "thirdweb";
+import { getApprovalForTransaction, transfer } from "thirdweb/extensions/erc20";
 
 export default function Home() {
   const { data: profiles } = useProfiles({ client });
@@ -42,14 +43,28 @@ export default function Home() {
       if (!result.wallet) throw new Error("No wallet found for this email.");
 
       setStatus("Preparing transaction...");
-      const transaction = prepareTransaction({
-        to: result.wallet,
-        chain: avalancheFuji,
-        client,
-        value: toWei(formData.amount),
-      });
-
       if (!account) return setStatus("No account found");
+      const contract = getContract({
+        client,
+        chain: base,
+        address: "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+      })
+      const transaction = transfer({
+        contract,
+        to: result.wallet,
+        amount: formData.amount,
+      });
+      const approveTx = await getApprovalForTransaction({
+        transaction,
+        account,
+      });
+      if (approveTx) {
+        await sendAndConfirmTransaction({
+          transaction: approveTx,
+          account,
+        })
+      }
+
       setStatus("Sending transaction...");
 
       const transactionReceipt = await sendAndConfirmTransaction({
@@ -75,17 +90,12 @@ export default function Home() {
         options: [
           "google",
           "discord",
-          "telegram",
-          "farcaster",
           "email",
           "x",
-          "passkey",
-          "phone",
           "github",
           "twitch",
           "steam",
           "coinbase",
-          "line",
           "apple",
           "facebook",
         ],
@@ -102,15 +112,24 @@ export default function Home() {
               Connect Your Wallet
             </h2>
             <p className="mt-2 text-sm text-gray-600">
-              Connect your wallet to send AVAX to any email address
+              Connect your wallet to send Base USDC to any email address
             </p>
             <div className="mt-6 flex justify-center">
               <div className="transform transition-transform hover:scale-105">
                 <ConnectButton
                   client={client}
                   wallets={wallets}
-                  chain={avalancheFuji}
+                  chain={base}
                   theme={'light'}
+                  accountAbstraction={{
+                    chain: base,
+                    sponsorGas: true,
+                  }}
+                  detailsButton={{
+                    displayBalanceToken: {
+                      [base.id]: "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                    },
+                  }}
                 />
               </div>
             </div>
@@ -122,15 +141,24 @@ export default function Home() {
                 <ConnectButton
                   client={client}
                   wallets={wallets}
-                  chain={avalancheFuji}
+                  chain={base}
                   theme={'light'}
+                  accountAbstraction={{
+                    chain: base,
+                    sponsorGas: true,
+                  }}
+                  detailsButton={{
+                    displayBalanceToken: {
+                      [base.id]: "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                    },
+                  }}
                 />
               </div>
               <h2 className="text-3xl font-extrabold text-gray-900">
                 Pay to an Email
               </h2>
               <p className="mt-2 text-sm text-gray-600">
-                Send AVAX directly to anyone using their email address
+                Send Base USDC directly to anyone using their email address
               </p>
             </div>
             <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -158,7 +186,7 @@ export default function Home() {
                   htmlFor="amount"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Amount (AVAX)
+                  Amount (USDC)
                 </label>
                 <div className="relative">
                   <input
@@ -174,7 +202,7 @@ export default function Home() {
                     onChange={handleChange}
                   />
                   <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                    <span className="text-gray-500 sm:text-sm">AVAX</span>
+                    <span className="text-gray-500 sm:text-sm">USDC</span>
                   </div>
                 </div>
               </div>
@@ -182,11 +210,10 @@ export default function Home() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className={`group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white ${
-                  isLoading
-                    ? "bg-indigo-400 cursor-not-allowed"
-                    : "bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                } transition-all duration-200`}
+                className={`group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white ${isLoading
+                  ? "bg-indigo-400 cursor-not-allowed"
+                  : "bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  } transition-all duration-200`}
               >
                 {isLoading ? (
                   <div className="flex items-center">
@@ -220,11 +247,10 @@ export default function Home() {
 
             {status && (
               <div
-                className={`mt-4 p-3 rounded-lg text-sm ${
-                  status.includes("Error")
-                    ? "bg-red-50 text-red-700 border border-red-200"
-                    : "bg-green-50 text-green-700 border border-green-200"
-                }`}
+                className={`mt-4 p-3 rounded-lg text-sm ${status.includes("Error")
+                  ? "bg-red-50 text-red-700 border border-red-200"
+                  : "bg-green-50 text-green-700 border border-green-200"
+                  }`}
               >
                 <div className="flex items-center">
                   {status.includes("Error") ? (
@@ -283,7 +309,7 @@ export default function Home() {
                       <div className="mb-3">
                         <p className="text-sm text-gray-500">Amount Sent</p>
                         <p className="font-medium text-black">
-                          {formData.amount} AVAX
+                          {formData.amount} USDC
                         </p>
                       </div>
                       <div className="mb-3">
